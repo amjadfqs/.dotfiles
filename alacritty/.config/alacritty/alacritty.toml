@@ -1,0 +1,27 @@
+live_config_reload = true
+
+import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  "~/.config/alacritty/themes/themes/argonaut.toml",
+]
+
+[window]
+# dimensions = {columns= 100,lines= 30}
+dimensions = { columns = 150, lines = 40 }
+dynamic_padding = false
+decorations = "none"
+opacity = 0.85
+blur = true
+padding = { x = 3, y = 0 }
+[font]
+size = 12.0
+[font.normal]
+family = "VictorMono Nerd Font"
+style = "Bold"
+[font.bold]
+family = "VictorMono Nerd Font"
+style = "Bold"
+[font.italic]
+family = "VictorMono Nerd Font"
+style = "Italic"
