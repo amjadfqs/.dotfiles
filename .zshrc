@@ -49,6 +49,12 @@ alias hg="history | grep"
 alias lg="lazygit"
 alias ld="lazydocker"
 
+# Netwokr Manager Aliases
+alias lsnet='nmcli device wifi list'
+alias con='nmcli device wifi connect'
+alias discon='nmcli device disconnect'
+
+
 # find files function
 cf() {
     local search_pattern="${1:-.}"
