@@ -226,3 +226,25 @@ client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
 client.urgent            $peach    $base  $peach   $overlay0  $peach
 client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
+
+# Gaps settings
+smart_gaps on
+
+#default gap sizes
+set $gapsinner 7
+set $gapsouter 2
+
+# set default gaps
+default_border pixel 3
+gaps inner $gapsinner
+gaps outer $gapsouter
+
+# Gaps on/off switching mode
+set $mode_gaps Toggle gaps: (1) on (2) off
+bindsym $mod+F1 mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym 1 mode "default", gaps inner all set $gapsinner, gaps outer all set $gapsouter
+    bindsym 2 mode "default", gaps inner all set 1, gaps outer all set 1
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
