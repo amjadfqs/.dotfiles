@@ -83,6 +83,14 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
 
 source $ZSH/oh-my-zsh.sh
 
+# lsd
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
 # Starship prompt
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
