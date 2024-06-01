@@ -11,22 +11,23 @@
 
 for_window [class="^.*"] border pixel 1
 
-# set $mod Mod4
-set $mod Mod1
+set $mod Mod4
+# set $mod Mod1
 
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/.config/backgrounds/anime-city.jpg
 # exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id greenclip daemon
 
 # kill any hanging polybar processes
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 # exec_always --no-startup-id polybar
 
-# bindsym Print exec maim "/home/$USER/Pictures/$(date).jpg"
-# bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-# bindsym Shift+Print exec maim --select "/home/$USER/Pictures/$(date).jpg"
+bindsym Print exec maim "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
+bindsym Shift+Print exec maim --select "/home/$USER/Pictures/$(date).jpg"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png
@@ -78,6 +79,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+v exec --no-startup-id rofi -show clipboard -modi "clipboard:greenclip print"
 
 # change focus
 bindsym $mod+h focus left
