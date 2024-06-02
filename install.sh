@@ -30,6 +30,9 @@ sudo pacman -S --noconfirm starship
 # Install tmux
 sudo pacman -S --noconfirm tmux
 
+# install brightness
+sudo pacman -S --noconfirm brightnessctl
+
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
