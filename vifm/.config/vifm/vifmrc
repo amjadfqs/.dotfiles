@@ -1,0 +1,97 @@
+source ~/.config/vifm/icons.vifm
+source ~/.config/vifm/ft.vifm
+
+"---------------------
+" options
+"---------------------
+set dotdirs=rootparent
+set fastrun
+set number
+set nofollowlinks
+set history=100
+set hlsearch
+set ignorecase
+set incsearch
+set relativenumber
+set scrolloff=3
+set smartcase
+set slowfs=curlftpfs
+set sortnumbers
+set statusline="%t%= [%A %u:%g %s %d]"
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set syscalls
+set tabstop=4
+set title
+set trash
+set undolevels=100
+set vicmd=nvim
+set vimhelp
+set wildmenu
+set wildstyle=popup
+colorscheme nord
+
+"---------------------
+" key mappings
+"---------------------
+
+nmap s :shell<cr>
+nmap S :sort<cr>
+nmap w :view<cr>
+nmap cd :cd<space>
+
+" open file in the background
+nmap gb :file &<cr>l
+
+" yank directory path
+nmap yd :!echo %d | xsel %i<cr>
+" yank file path
+nmap yf :!echo %c:p | xsel %i<cr>
+
+" renaming
+nmap I cw<c-a>
+nmap cc cw<c-u>
+nmap A cw<c-w>
+
+" external commands
+nmap ! :!
+nmap @ :!<space>%f<left><left><left>
+
+" tagging
+nmap <space> tj
+
+" resize
+nmap < <c-w><
+nmap > <c-w>>
+
+"---------------------
+" commands
+"---------------------
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+command df df -h %m 2> /dev/null
+command diff nvim -d %f %F
+command zip zip -r %f.zip %f
+command run !! ./%f
+command make !!make
+command vgrep nvim "+grep %a"
+
+"---------------------
+" marks
+"---------------------
+mark h ~/
+mark t ~/.vifm/Trash/
+mark d ~/dl/
+mark v ~/videos/
+mark p ~/projects/
+mark P ~/photos/
+mark a ~/apps/
+mark m /media/
+
+" vim: filetype=vim

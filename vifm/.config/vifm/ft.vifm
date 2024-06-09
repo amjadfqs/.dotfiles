@@ -1,0 +1,89 @@
+"---------------------
+" open/view
+"---------------------
+
+" Pdf, PostScript & Djvu
+filextype *.pdf,*.ps,*.djvu
+  \ zathura %f %i &,
+  \ open %f &,
+fileview *.pdf
+  \ pdftotext -nopgbrk %c -
+
+" Audio
+filetype *.wav,*.mp3,*.flac,*.ogg,*.oga,*.m4a,*.wma,*.aac,*.3gp,*.opus,*.wv
+  \ mpv %f,
+fileview <audio/*>
+  \ ffprobe -of json -v error -show_format -show_error %f
+
+" Video
+filextype <video/*>
+  \ mpv %f %i &,
+fileview *.avi,*.mp4,*.wmv,*.dat,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.webm,*.mts,*.m2ts,*.rm,*.mov
+  \ ffprobe -of json -v error -show_format -show_error %f
+
+" Web
+filetype *.html,*.htm
+  \ dwb %f %i &,
+fileview *.html,*.htm
+  \ elinks --dump
+
+" Object
+filetype *.o
+  \ {List Symbols} nm %f | less
+
+" Image
+filextype *.gif
+  \ {Loop} mpv --loop=inf %f %i &,
+
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+  \ feh %f &,
+fileview *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.ico
+  \ identify %f
+
+" MD5
+filetype *.md5
+  \ {Check MD5 hash sum} md5sum -c %f,
+
+" Archive
+filetype *.tar.gz,*.tgz,*.tar.bz,*.tbz,*.tar.bz2,*.tbz2,*.tar.Z,*.tZ,*.tar.lzo,*.tzo
+  \,*.tar.lz,*.tlz,*.tar.xz,*.txz,*.tar.7z,*.t7z,*.tar,*.zip,*.jar,*.war,*.rar
+  \,*.lha,*.lzh,*.7z,*.alz,*.ace,*.a,*.arj,*.arc,*.rpm,*.deb,*.cab,*.gz,*.bz,*.bz2
+  \,*.Z,*.lzma,*.lzo,*.lz,*.xz,*.rz,*.lrz,*.7z,*.cpio
+  \ {View contents} als %f | less,
+  \ {Extract here} aunpack %f,
+
+fileview *.tar.gz,*.tgz,*.tar.bz,*.tbz,*.tar.bz2,*.tbz2,*.tar.Z,*.tZ,*.tar.lzo,*.tzo
+  \,*.tar.lz,*.tlz,*.tar.xz,*.txz,*.tar.7z,*.t7z,*.tar,*.zip,*.jar,*.war,*.rar
+  \,*.lha,*.lzh,*.7z,*.alz,*.ace,*.a,*.arj,*.arc,*.rpm,*.deb,*.cab,*.gz,*.bz,*.bz2
+  \,*.Z,*.lzma,*.lzo,*.lz,*.xz,*.rz,*.lrz,*.7z,*.cpio
+  \ als %f
+
+" IsoMount
+filetype *.iso
+  \ {Mount with fuseiso}
+  \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+
+" SshMount
+filetype *.ssh
+  \ {Mount with sshfs}
+  \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR,
+
+" FtpMount
+filetype *.ftp
+  \ {Mount with curlftpfs}
+  \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR,
+
+" Torrents
+fileview *.torrent
+  \ aria2c -S
+
+" Directories
+filextype */
+"  \ {View in thunar} Thunar %f &,
+fileview .*/,*/ tree -FL 1 %f
+
+" All other files get free syntax highlighting
+fileview *
+  \ highlight --out-format=ansi --force -qWJ %pw -t 2 %c
+
+" vim: filetype=vim
