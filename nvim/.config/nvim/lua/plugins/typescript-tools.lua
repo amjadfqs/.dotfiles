@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   "pmizio/typescript-tools.nvim",
   event = { "BufReadPre", "BufNewFile" },

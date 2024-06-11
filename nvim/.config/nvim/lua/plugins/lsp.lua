@@ -41,7 +41,7 @@ return {
         "css-lsp",
         "html-lsp",
         "typescript-language-server",
-        "deno",
+        -- "deno",
         "prettierd",
         "prettier",
         "eslint_d",
