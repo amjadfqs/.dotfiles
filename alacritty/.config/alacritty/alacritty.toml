@@ -13,11 +13,11 @@ TERM = "xterm-256color"
 dimensions = { columns = 150, lines = 40 }
 dynamic_padding = false
 decorations = "none"
-opacity = 0.85
+opacity = 0.95
 blur = true
 padding = { x = 3, y = 0 }
 [font]
-size = 8.0
+size = 12.0
 [font.normal]
 family = "VictorMono Nerd Font"
 style = "Bold"
