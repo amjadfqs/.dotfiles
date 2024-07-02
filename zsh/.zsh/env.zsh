@@ -26,7 +26,7 @@ export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
 
 # Brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # pnpm
 export PNPM_HOME="/home/amjad/.local/share/pnpm"
