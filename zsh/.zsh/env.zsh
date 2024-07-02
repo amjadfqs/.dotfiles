@@ -1,4 +1,6 @@
-
+HISTFILE=$HOME/.zsh/history
+# Browser
+export BROWSER=/usr/bin/microsoft-edge-stable
 # Go language setup
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
