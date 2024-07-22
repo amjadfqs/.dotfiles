@@ -13,7 +13,7 @@ source $ZDOTDIR/aliases.zsh
 cf() {
     local search_pattern="${1:-.}"
     local search_depth="${2:-2}"
-    local dir=$(fd "$search_pattern" --type d --max-depth "$search_depth" ~/Desktop/Work | fzf --prompt "Choose a directory: " --border)
+    local dir=$(fd "$search_pattern" --type d --max-depth "$search_depth" ~/Work | fzf --prompt "Choose a directory: " --border)
     if [ -n "$dir" ]; then
         cd "$dir" || return 1
     fi

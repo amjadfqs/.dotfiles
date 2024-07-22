@@ -2,9 +2,7 @@ HISTFILE=$HOME/.zsh/history
 # Browser
 export BROWSER=/usr/bin/microsoft-edge-stable
 # Go language setup
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$PATH:$GOBIN"
+export PATH=$PATH:/usr/local/go/bin
 
 # Android development environment setup
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -19,11 +17,11 @@ export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 # Java Home
 # export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 
 # Node Version Manager (NVM) and Node.js
 export NVM_DIR="$HOME/.nvm"
-export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.15.0/bin:$PATH"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
 
@@ -40,3 +38,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Bob
 export PATH="/home/amjad/.local/share/bob/nvim-bin:$PATH"
+
+# Ruby
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
