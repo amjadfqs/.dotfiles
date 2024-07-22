@@ -23,7 +23,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: JetBrainsMonoNL Nerd Font 14
+font pango: JetBrains Mono NF 18
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -172,7 +172,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id wezterm
 
 # kill focused window
 bindsym $mod+q kill
@@ -193,7 +193,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # keybinding in fancy rofi (automated):
-bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
+# bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
 # alternative
 # keybinding list in editor:
 # bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
@@ -294,7 +294,7 @@ bindsym Mod1+m exec --no-startup-id /usr/bin/thunderbird
 bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
+# bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -387,7 +387,7 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
-exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+# exec_always --no-startup-id setxkbmap
 exec_always --no-startup-id setxkbmap -layout us,ara -option "grp:win_space_toggle"
 
 # redshift
@@ -402,7 +402,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/backgrounds/anime-city.jpg
+exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/backgrounds/sun.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -513,7 +513,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: JetBrainsMonoNL Nerd Font 11
+		font pango: JetBrains Mono NF 12
     workspace_min_width 40
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position bottom
@@ -595,3 +595,6 @@ bindsym $mod+t exec --no-startup-id rofi -show window
 
 exec --no-startup-id greenclip daemon
 bindsym $mod+v exec --no-startup-id rofi -show clipboard -modi "clipboard:greenclip print"
+
+# fusuma for multiplef gestures
+exec_always --no-startup-id /home/amjad/.local/share/gem/ruby/3.0.0/bin/fusuma
