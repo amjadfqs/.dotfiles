@@ -1,0 +1,64 @@
+[colors]
+foreground = "#abb3bf"
+background = "#282c34"
+
+cursor_bg = "#abb2bf"
+cursor_border = "#abb2bf"
+
+selection_fg = "#414141"
+selection_bg = "#cecece"
+
+split = "#78808c"
+
+ansi = [
+  "#282c34",
+  "#e06c75",
+  "#98c379",
+  "#e5c07b",
+  "#61afef",
+  "#c678dd",
+  "#56b6c2",
+  "#abb2bf",
+]
+
+brights = [
+  "#545862",
+  "#e06c75",
+  "#98c379",
+  "#e5c07b",
+  "#61afef",
+  "#c678dd",
+  "#56b6c2",
+  "#c8ccd4",
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#181a1f"
+background = "#282c34"
+
+[colors.tab_bar.active_tab]
+fg_color = "#181a1f"
+bg_color = "#98c379"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#848b98"
+bg_color = "#282c34"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#98c379"
+bg_color = "#393f4a"
+# intensity = "Bold"
+
+[colors.tab_bar.new_tab]
+fg_color = "#98c379"
+bg_color = "#393f4a"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#98c379"
+bg_color = "#5c6370"
+intensity = "Bold"
+
+[metadata]
+aliases = []
+name = "onedark-nvim"
