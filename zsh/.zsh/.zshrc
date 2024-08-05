@@ -12,7 +12,7 @@ source $ZDOTDIR/aliases.zsh
 # find files function
 cf() {
     local search_pattern="${1:-.}"
-    local search_depth="${2:-2}"
+    local search_depth="${2:-3}"
     local dir=$(fd "$search_pattern" --type d --max-depth "$search_depth" ~/Work | fzf --prompt "Choose a directory: " --border)
     if [ -n "$dir" ]; then
         cd "$dir" || return 1
@@ -23,6 +23,6 @@ bindkey '^f' cf-widget
 # Starship prompt
 eval "$(starship init zsh)"
 # zoxide as cd
-# eval "$(zoxide init --cmd cd zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+# eval "$(zoxide init zsh)"
 

@@ -1,8 +1,11 @@
 HISTFILE=$HOME/.zsh/history
+
 # Browser
 export BROWSER=/usr/bin/microsoft-edge-stable
-# Go language setup
-export PATH=$PATH:/usr/local/go/bin
+# go
+export GOROOT="/usr/local/go/bin"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 # Android development environment setup
 export ANDROID_HOME=$HOME/Android/Sdk

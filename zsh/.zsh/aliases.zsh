@@ -10,7 +10,7 @@ alias hc="history -c"
 alias hg="history | grep"
 alias lg="lazygit"
 alias ld="lazydocker"
-
+alias air='$(go env GOPATH)/bin/air'
 # Netwokr Manager Aliases
 alias lnet='nmcli device wifi list'
 alias con='nmcli device wifi connect'
