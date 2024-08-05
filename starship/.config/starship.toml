@@ -8,11 +8,21 @@ $git_status\
 $git_metrics\
 $python\
 $java\
+$golang\
+$rust\
+$ruby\
+$lua\
+$haskell\
+$package\
 $fill\
 $nodejs\
+$docker_context\
 $cmd_duration $jobs $time\
 $line_break\
 $character"""
+
+add_newline = true
+palette = "onedark"
 
 [nodejs]
 format = "[$symbol($version )]($style)"
@@ -21,21 +31,27 @@ format = "[$symbol($version )]($style)"
 symbol = " "
 
 [directory]
-style = "blue"
+style = 'bold fg:dark_blue'
 read_only = " 󰑇 "
 truncation_length = 3
 truncate_to_repo = false
 home_symbol = "~ 󰋜 "
 
+[directory.substitutions]
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
+
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](green)"
+# vicmd_symbol = "[❮](green)"
 
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "bright-black"
+style = 'fg:green'
 
 [jobs]
 symbol = ""
@@ -61,9 +77,6 @@ style = "yellow"
 [memory_usage]
 symbol = "󰍛 "
 
-[rust]
-symbol = " "
-
 [python]
 symbol = "󰌠 "
 style = "yellow"
@@ -85,3 +98,58 @@ when = "ps aux | grep stunnel | grep -v grep"
 command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
 style = "red"
 format = "[TUNNEL OPEN for $output]($style)"
+
+[docker_context]
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
+
+[golang]
+style = 'blue'
+symbol = ' '
+
+[haskell]
+style = 'blue'
+symbol = ' '
+
+[rust]
+style = 'orange'
+symbol = " "
+
+[ruby]
+style = 'blue'
+symbol = ' '
+
+[lua]
+symbol = ' '
+
+[package]
+symbol = '󰏗 '
+
+[palettes.nord]
+dark_blue = '#5E81AC'
+blue = '#81A1C1'
+teal = '#88C0D0'
+red = '#BF616A'
+orange = '#D08770'
+green = '#A3BE8C'
+yellow = '#EBCB8B'
+purple = '#B48EAD'
+gray = '#434C5E'
+black = '#2E3440'
+white = '#D8DEE9'
+
+[palettes.onedark]
+dark_blue = '#61afef'
+blue = '#56b6c2'
+red = '#e06c75'
+green = '#98c379'
+purple = '#c678dd'
+cyan = '#56b6c2'
+orange = '#be5046'
+yellow = '#e5c07b'
+gray = '#828997'
+white = '#abb2bf'
+black = '#2c323c'
