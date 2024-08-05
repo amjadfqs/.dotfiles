@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Update the system and install necessary dependencies
+sudo pacman -Syu --noconfirm
+sudo pacman -S --needed base-devel git --noconfirm
+
+# Clone the paru repository from AUR
+git clone https://aur.archlinux.org/paru.git
+
+# Change to the paru directory
+cd paru
+
+# Build and install paru
+makepkg -si --noconfirm
+
+# Clean up by removing the cloned repository
+cd ..
+rm -rf paru
+
 # Install alacritty terminal
 sudo pacman -S --noconfirm alacritty
 
@@ -16,7 +33,7 @@ sudo pacman -S --noconfirm zoxide
 sudo pacman -S --noconfirm rofi
 
 # Install rofi-greenclip
-sudo pacman -S --noconfirm rofi-greenclip
+paru -S --noconfirm rofi-greenclip
 
 # Install neovim
 sudo pacman -S --noconfirm neovim
@@ -30,7 +47,7 @@ sudo pacman -S --noconfirm starship
 # Install tmux
 sudo pacman -S --noconfirm tmux
 
-# install brightness
+# Install brightnessctl
 sudo pacman -S --noconfirm brightnessctl
 
 # Install Oh My Zsh
