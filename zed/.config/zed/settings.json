@@ -1,0 +1,136 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "cursor_blink": false,
+  "confirm_quit": true,
+  "vim_mode": true,
+  // use relative line numbers
+  "relative_line_numbers": true,
+  "gutter": {
+    "folds": false
+  },
+  "journal": {
+    "hour_format": "hour12"
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false
+  },
+  "toolbar": {
+    "selections_menu": false,
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  "vertical_scroll_margin": 8,
+  // Indentation, rainbow indentation
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
+  // NOTE: Zen mode, refer https://github.com/zed-industries/zed/issues/4382 when it's resolved
+  "centered_layout": {
+    "left_padding": 0.15,
+    "right_padding": 0.15
+  },
+  // Use Copilot Chat AI as default
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha"
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "ui_font_family": "JetBrains Mono",
+  "language_models": {
+    "ollama": {
+      "api_url": "http://localhost:11434"
+    }
+  },
+  // Inlay hints preconfigured by Zed: Go, Rust, Typescript and Svelte
+  "inlay_hints": {
+    "enabled": false,
+    "show_type_hints": false
+  },
+  // LSP
+  "format_on_save": "on",
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classAttributes": ["class", "className", "ngClass", "styles"]
+      }
+    }
+  },
+  "languages": {
+    // Refer https://zed.dev/docs/languages/javascript and https://zed.dev/docs/languages/typescript for more info
+    "TypeScript": {
+      // Refer https://github.com/jellydn/ts-inlay-hints for how to setup for Neovim and VSCode
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true,
+        "show_type_hints": false
+      }
+    },
+    "Python": {
+      "format_on_save": { "language_server": { "name": "ruff" } },
+      "formatter": { "language_server": { "name": "ruff" } },
+      "language_servers": ["pyright", "ruff"]
+    }
+  },
+  // Use zed commit editor
+  "terminal": {
+    "env": {
+      "EDITOR": "zed --wait"
+    }
+  },
+  // File syntax highlighting
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "JSON": ["json", "jsonc", "*.code-snippets"]
+  }, // Move all panel to the right
+  "project_panel": {
+    "button": true,
+    "dock": "left",
+    "git_status": true
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "button": true
+  },
+  // Move some unnecessary panels to the left
+  "notification_panel": {
+    "dock": "left"
+  },
+  "chat_panel": {
+    "dock": "left"
+  },
+  "preferred_line_length": 110,
+  "soft_wrap": "preferred_line_length"
+}
