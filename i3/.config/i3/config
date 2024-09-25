@@ -1,20 +1,3 @@
-# exec --no-startup-id ~/set_once.sh
-# This file is a modified version based on default i3-config-wizard config
-# source is available here:
-# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/config
-# Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
-# https://endeavouros.com
-#
-# iconic font icon search: https://fontawesome.com/v4.7/cheatsheet/
-#
-# --> to update this run the following command (will backup existing setup file)
-# wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/config -P ~/.config/i3/
-#
-# Endeavouros-i3 config file
-# Source for complete framework of our i3 config and theming here: https://github.com/endeavouros-team/endeavouros-i3wm-setup
-# EndeavourOS wiki holds some Information also: https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
-# Please see http://i3wm.org/docs/userguide.html for the official i3 reference!
-
 #######################
 # config starts here: #
 #######################
@@ -172,19 +155,20 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id wezterm start
+# bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id wezterm
 
 # kill focused window
 bindsym $mod+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/powermenu
 
 # Lock the system
 # lock with a picture:
 #bindsym $mod+l exec --no-startup-id i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-bindsym $mod+l exec --no-startup-id ~/.config/i3/scripts/blur-lock
+bindsym $mod+x exec --no-startup-id ~/.config/i3/scripts/blur-lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -202,14 +186,14 @@ bindsym $mod+Shift+r restart
 #bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 #bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 # Backlight setting using dunst osc
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 -time 1000
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 -time 1000
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+b focus up
-bindsym $mod+o focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -230,7 +214,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# bindsym $mod+h split h
 
 # split in vertical orientation
 # bindsym $mod+v split v
@@ -259,29 +243,19 @@ bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
 
 # volume
 # use meta keys without showing osc
-#bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -RTMIN+1 i3blocks
-#bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -RTMIN+1 i3blocks
-# use meta keys showing osc using dunst
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_up
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_down
+# Pipewire-pulse
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 
-# granular volume control
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && pkill -RTMIN+1 i3blocks
-
-# mute
-#bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && killall -USR1 i3blocks
-# use meta keys showing osc using dunst
-bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_mute
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # mic mute toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-# audio control
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-# Above line will also work for pausing
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Redirect sound to headphones
 bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
@@ -381,9 +355,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-# start welcome app
-#exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
-
 # num lock activated
 #exec --no-startup-id numlockx on
 
@@ -397,28 +368,10 @@ exec_always --no-startup-id redshift redshift-gtk &
 # start conky:
 #exec_always --no-startup-id conky
 
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.screenlayout/monitor.sh
-
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/backgrounds/sun.png
+exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/backgrounds/mountain-sun.png
 
-# set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
-
-# disable power saving (for example if using xscreensaver)
-#exec --no-startup-id xset -dpms
-
-# use xautolock to use autosuspend rules for mobile devices
-# https://wiki.archlinux.org/title/Session_lock#xautolock
-#exec --no-startup-id xautolock -time 60 -locker "systemctl suspend"
-
-
-# xscreensaver
-# https://www.jwz.org/xscreensaver
-#exec --no-startup-id xscreensaver --no-splash
 
 # Desktop notifications
 # dunst config used ~/.config/dunst/dunstrc
@@ -427,18 +380,6 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 # may need to run dbus-launch explicitly: 
 #exec --no-startup-id dbus-launch /usr/bin/dunst
 exec --no-startup-id /usr/bin/dunst
-# alternative if you installed aside with XFCE4:
-# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
-
-# autotiling script
-# https://github.com/nwg-piotr/autotiling
-# `yay -S autotiling ;) (it is in AUR)
-#exec_always --no-startup-id autotiling
-
-# Autostart apps as you like
-#exec --no-startup-id sleep 2 && xfce4-terminal
-# exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
 
 ###############
 # system tray #
@@ -450,10 +391,7 @@ exec --no-startup-id /usr/bin/dunst
 #exec --no-startup-id blueberry-tray
 
 # networkmanager-applet
-#exec --no-startup-id nm-applet
-
-# clipman-applet
-#exec --no-startup-id xfce4-clipman
+exec --no-startup-id nm-applet
 
 ##################
 # floating rules #
@@ -507,71 +445,9 @@ client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
 client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
-############################################
-# bar settings (input comes from i3blocks) #
-############################################
-
-# Start i3bar to display a workspace bar
-# (plus the system information i3status finds out, if available)
-bar {
-		font pango: JetBrains Mono NF 11
-    workspace_min_width 40
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position bottom
-#	    	i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    #tray_output primary
-		    tray_padding 0
-
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-strip_workspace_numbers yes
-##strip_workspace_name no
-
-		    colors {
-		    separator          $purple
-		    background         $darkgrey
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-	}
-}
-
-# you can add different bars for multidisplay setups on each display:
-# set output HDMI-0 to the display you want the bar, --transparency can be set.
-# Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
-# https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
-# #08052be6 --> e6=90%
-
-# bar {
-#	font pango: Noto Sans Regular 10
-#	status_command i3blocks -c ~/.config/i3/i3blocks-2.conf
-#	i3bar_command i3bar --transparency
-#	output HDMI-0
-#	position bottom
-#
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-#strip_workspace_numbers yes
-##strip_workspace_name no
-#
-#	colors {
-#		separator          $purple
-#		background         $darkbluetrans
-#        	statusline         $white
-#					border		bg		txt		indicator
-#		focused_workspace	$lighterblue	$lighterblue	$darkblue	$purple
-#		active_workspace	$lightdblue	$lightdblue	$darkblue	$purple
-#		inactive_workspace	$darkblue	$darkblue	$lightdblue	$purple
-#		urgent_workspace	$urgentred	$urgentred	$white		$purple
-#	}
-#}
+# kill any hanging polybar processes
+exec_always killall polybar
+exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 #####################################
 # Application menu handled by rofi: #
