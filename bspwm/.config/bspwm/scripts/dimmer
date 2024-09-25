@@ -1,0 +1,31 @@
+#!/sbin/bash
+
+export XSECURELOCK_AUTH=auth_x11
+export XSECURELOCK_AUTHPROTO=authproto_pam
+export XSECURELOCK_PAM_SERVICE=xsecurelock
+export XSECURELOCK_SINGLE_AUTH_WINDOW=1
+export XSECURELOCK_DISCARD_FIRST_KEYPRESS=0
+export XSECURELOCK_COMPOSITE_OBSCURER=0
+
+export XSECURELOCK_AUTH_CURSOR_BLINK=1
+export XSECURELOCK_FONT='JetBrains Mono'
+export XSECURELOCK_BACKGROUND_COLOR=#122334
+
+export XSECURELOCK_SHOW_DATETIME=1
+export XSECURELOCK_SHOW_HOSTNAME=2
+export XSECURELOCK_SHOW_KEYBOARD_LAYOUT=1
+
+export XSECURELOCK_SAVER=saver_mpv
+export XSECURELOCK_SAVER_IMAGE=$HOME/photos/wallpapers/ign_evening.png
+export XSECURELOCK_LIST_VIDEOS_COMMAND="find $HOME/photos/wallpapers/lock -type f"
+export XSECURELOCK_VIDEOS_FLAGS='--no-input-terminal \
+                                 --really-quiet \
+                                 --loop \
+                                 --no-stop-screensaver \
+                                 --no-audio \
+                                 --video-osd=no \
+                                 --image-display-duration=inf \
+                                 --brightness=-20 \
+                                 --gamma=-40'
+
+exec xsecurelock

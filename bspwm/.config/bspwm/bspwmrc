@@ -1,0 +1,104 @@
+#!/bin/sh
+
+# clipmenud opts
+export CM_SELECTIONS="clipboard"
+export CM_LAUNCHER="rofi"
+
+#############   configuration   ###############
+bspc config window_gap                 8
+bspc config split_ratio                0.50
+bspc config gapless_monocle            false
+
+bspc config top_padding                50
+bspc config bottom_padding             0
+bspc config left_padding               0
+bspc config right_padding              0
+bspc config paddingless_monocle        true
+
+bspc config click_to_focus             false
+bspc config single_monocle             true
+bspc config focus_by_distance          true
+bspc config focus_follows_pointer      true
+bspc config ignore_ewmh_focus          true
+bspc config history_aware_focus        true
+bspc config remove_disabled_monitors   true
+bspc config remove_unplugged_monitors  true
+bspc config merge_overlapping_monitors true
+
+bspc config pointer_follows_monitor    true
+bspc config pointer_modifier           mod4
+bspc config pointer_action1            move
+bspc config pointer_action2            resize_side
+bspc config pointer_action3            resize_corner
+
+bspc config border_width               2
+bspc config borderless_monocle         true
+bspc config focused_border_color       "$(xrdb -g color1)"
+bspc config presel_feedback_color      "$(xrdb -g color3)"
+
+# rules
+bspc rule -a 'Chromium'      -o desktop=3 follow=on
+bspc rule -a TelegramDesktop -o desktop=8 follow=on
+bspc rule -a Thunar          -o desktop=6 follow=on
+bspc rule -a 'flameshot'        state='floating'
+bspc rule -a 'PCSX2'            state='floating'
+bspc rule -a '*:SPLASH'         state='floating'
+bspc rule -a 'mpv'              state='floating'
+
+#############    desktops   ###############
+update_monitors() {
+  set -- $(bspc query -M)
+
+  if [ $# -eq 2 ]; then
+    bspc monitor "$1" -d 1 3 5 7
+    bspc monitor "$2" -d 2 4 6 8
+  else
+    bspc monitor -d 1 2 3 4 5 6 7 8
+  fi
+}
+
+#background 
+once  feh --bg-fill ~/.config/backgrounds/mountain-sun.png
+
+# initial setup
+update_monitors
+
+# update on monitor add/remove
+once bspc subscribe monitor | while read -r line; do
+  case $line in
+      monitor_add*|monitor_remove*) update_monitors;;
+  esac
+done &
+
+#############   autostart   ###############
+
+# session
+once lxsession -e BSPWM -a &
+once gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
+
+# key bindings
+once sxhkd &
+
+# audio
+once -f pipewire &
+
+# screen lock
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/scripts/dimmer" &
+
+# apps
+once picom -b                                      # compositor
+once batsignal -pb -a "System Power"               # battery notifications
+once clipmenud &                                   # clipboard manager
+once dunst &                                       # notifications daemon
+once -n polybar $HOME/.config/polybar/launch.sh &  # top-bar
+once nm-applet &                                   # mounting util
+once udiskie &                                     # mounting util
+once -n redshift redshift-gtk &                    # reduced blue-light indicator
+once easyeffects --gapplication-service -q &       # audio effects
+
+#############   finialization   ###############
+
+# update dbus vars
+dbus-update-activation-environment --all
+
+# vim: ft=bash
