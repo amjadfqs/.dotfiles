@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "auto_update": false,
   "telemetry": {
     "metrics": false,
     "diagnostics": false
