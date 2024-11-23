@@ -1,0 +1,37 @@
+## antidote plugins
+
+# productivity
+rupa/z                              # navigation
+olets/zsh-abbr    kind:defer        # abbrivation expansion
+jeffreytse/zsh-vi-mode              # better vi mode
+
+# utilities
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:prompt
+belak/zsh-utils path:utility
+belak/zsh-utils path:completion
+
+# oh my zsh
+#ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+#ohmyzsh/ohmyzsh path:plugins/copybuffer
+#ohmyzsh/ohmyzsh path:plugins/copyfile
+#ohmyzsh/ohmyzsh path:plugins/copypath
+#ohmyzsh/ohmyzsh path:plugins/extract
+#ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+
+# prompts:
+chrissicool/zsh-256color
+sindresorhus/pure kind:fpath
+
+# misc
+#mattmc3/zfunctions
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-history-substring-search
+#unixorn/fzf-zsh-plugin
+
+# completion
+zsh-users/zsh-completions path:src kind:fpath
+belak/zsh-utils path:completion
