@@ -2,6 +2,10 @@ nvim/.config/nvim/lazy-lock.json
 nvim/.config/nvim/lazy-lock.json
 nvim/.config/nvim/lazyvim.json
 vifm/.config/vifm/vifminfo.json
-zsh/.zsh/.zcompdump
-zsh/.zsh/.zcompdump.amjad.62869
-zsh/.zsh/history
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zsh_plugins.zsh
+zsh/.config/zsh/plugins.zsh
+zsh/.config/zsh/.zprofile
+zsh/.config/zsh/.zsh_plugins.txt
+zsh/.config/zsh/.zshrc
+zsh/.config/zsh/antidote
