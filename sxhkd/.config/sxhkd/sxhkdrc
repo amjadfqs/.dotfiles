@@ -1,0 +1,226 @@
+# wm independent
+#
+
+# terminal
+super + Return
+	wezterm
+
+# browser
+super + {_,shift + } w
+	zen {_,--incognito}
+
+#thunar
+super + n
+  thunar
+
+#telegram
+# super + t
+#   telegram-desktop
+
+# run an app
+super + s
+	rofi -show drun
+
+# run a command
+super + shift + s
+	rofi -show run
+
+# clipboard history
+super + v
+	CM_LAUNCHER=rofi clipmenu
+
+# screenshots
+{_,super} Print
+	flameshot {full -c,gui}
+
+# lock the wm
+{super + shift + x,XF86Sleep}
+    xset s activate
+
+# reload key mappings
+super + Escape
+	pkill -USR1 -x sxhkd && notify-send -a sxhkd "Reloaded config"
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart window manager
+super + alt + {q,r}
+	bspc {quit,wm -r && notify-send -a BSPWM "Restarted"}
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# swap with the biggest node in the current desktop
+super + g
+	bspc node -s biggest.local
+
+# increase/decrease/reset gaps
+super + minus
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 4))
+super + equal
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 4))
+super + plus
+	bspc config -d focused window_gap 8
+
+# rotate windows clock-wise
+super + r
+	bspc node @/ -R 90
+
+# rotate windows clock-wise
+super + shift + r
+	bspc node @/ -R -90
+
+# toggle monocle
+super + m
+	bspc desktop -l next
+
+# set the window state
+super + {t,shift + t,f,shift + f}
+	bspc node -t {tiled,pseudo_tiled,fullscreen,floating}
+
+# set the node flags
+super + ctrl + {m,x,s,p}
+	bspc node -g {marked,locked,sticky,private}
+
+# hide window
+super + d
+	bspc node --flag hidden=on
+
+# unhide window in current desktop
+super + shift + d
+	bspc node any.local.hidden -g hidden=off
+
+# unhide window in all desktops
+super + shift + ctrl + d
+	bspc node any.hidden -g hidden=off
+
+# focus window/monitor to the east
+super + h
+	bspc node -f west \
+		|| bspc monitor -f west \
+		|| notify-send -t 1800 -u low -a BSPWM "Nothing to the west"
+
+# focus window/monitor to the south
+super + j
+	bspc node -f south \
+		|| bspc monitor -f south \
+		|| notify-send -t 1800 -u low -a BSPWM "Nothing to the south"
+
+# focus window/monitor to the north
+super + k
+	bspc node -f north \
+		|| bspc monitor -f north \
+		|| notify-send -t 1800 -u low -a BSPWM "Nothing to the north"
+
+# focus window/monitor to the east
+super + l
+	bspc node -f east \
+		|| bspc monitor -f east \
+		|| notify-send -t 1800 -u low -a BSPWM "Nothing to the east"
+
+# swap window in direction
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '{1-8}'
+
+# focus the last desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus the older or newer desktop in the focus history
+super + shift + {o,i}
+	bspc wm -h off; \
+	bspc desktop {older,newer} -f; \
+	bspc wm -h on
+
+# focus the next/previous node in the current desktop
+super + {n,p}
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous node across desktops
+super + shift + {n,p}
+	bspc node -f {next,prev}.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel preselection for focused node
+super + ctrl + c
+	bspc node -p cancel
+
+# cancel preselection for focused desktop
+super + ctrl + shift + c
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# move current window to presel
+super + y
+    bspc node -n last.!automatic
+
+# send the newest marked node to the newest preselected node
+super + shift + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# resize current window
+super + alt + h
+	bspc node @west -r -25 || bspc node @east -r -25
+
+super + alt + j
+	bspc node @south -r +25 || bspc node @north -r +25
+
+super + alt + k
+	bspc node @south -r -25 || bspc node @north -r -25
+
+super + alt + l
+	bspc node @west -r +25 || bspc node @east -r +25
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+########## system ##########
+
+# brightness
+XF86MonBrightness{Up,Down}
+	brightnessctl set 5%{+,-}
+
+# brightness (external monitor)
+shift + XF86MonBrightness{Up,Down}
+	brightnessctl -d ddcci3 set 5%{+,-}
+
+# volume increase/decrease
+XF86Audio{Raise,Lower}Volume
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%{+,-}
+
+# mute/unmute
+XF86{Audio,AudioMic}Mute
+	wpctl set-mute @DEFAULT_AUDIO_{SINK,SOURCE}@ toggle
+
+# music player
+super + {less,greater,question,comma,period}
+	mpc --host=$HOME/.local/share/mpd/socket {prev,next,toggle,seek -12, seek +12}
+
+XF86Audio{Prev,Next,Play}
+	mpc --host=$HOME/.local/share/mpd/socket {prev,next,toggle}
+
+# vim: ft=bash
