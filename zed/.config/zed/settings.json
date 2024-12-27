@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "calls": {
+    "mute_on_join": false,
+    "share_on_join": false
+  },
   "auto_update": false,
   "telemetry": {
     "metrics": false,
