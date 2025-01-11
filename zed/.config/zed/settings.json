@@ -58,11 +58,11 @@
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4o"
+      "model": "claude-3-5-sonnet"
     },
     "version": "2"
   },
-  "ui_font_size": 16,
+  "ui_font_size": 15,
   "buffer_font_size": 14,
   "theme": {
     "mode": "system",
@@ -71,11 +71,6 @@
   },
   "buffer_font_family": "JetBrains Mono",
   "ui_font_family": "JetBrains Mono",
-  "language_models": {
-    "ollama": {
-      "api_url": "http://localhost:11434"
-    }
-  },
   // Inlay hints preconfigured by Zed: Go, Rust, Typescript and Svelte
   "inlay_hints": {
     "enabled": false,
